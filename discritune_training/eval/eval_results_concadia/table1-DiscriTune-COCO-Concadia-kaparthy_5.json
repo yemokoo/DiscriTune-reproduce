@@ -1,0 +1,7 @@
+{
+  "accuracy": 0.6137499849622449,
+  "total_images": 9691,
+  "checkpoint": "../outputs/discritune_coco_kaparthy/discritune_coco_epoch_5.pt",
+  "dataset": "../data/concadia",
+  "batch_size": 100
+}

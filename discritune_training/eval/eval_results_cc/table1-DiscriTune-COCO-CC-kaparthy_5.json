@@ -1,0 +1,7 @@
+{
+  "accuracy": 0.7919265835657032,
+  "total_images": 10912,
+  "checkpoint": "../outputs/discritune_coco_kaparthy/discritune_coco_epoch_5.pt",
+  "dataset": "../data/conceptual_captions",
+  "batch_size": 100
+}
