@@ -5,10 +5,10 @@
 
 echo "Starting DiscriTune COCO Evaluation..."
 echo "Decoding: Beam Search (beam_size=5)"
-export CUDA_VISIBLE_DEVICES=3
+export CUDA_VISIBLE_DEVICES=0
 
 python evaluation.py \
-    --checkpoint ../outputs/discritune_coco_multigpu/discritune_coco_final.pt \
+    --checkpoint ../outputs/discritune_coco_kaparthy/discritune_coco_epoch_5.pt \
     --prefix_length 10 \
     --data_dir ../data/flickr30k \
     --image_list_file /home/semlab/SEM/yemo/CLIP/DiscriTune-reproduce/discritune_training/data/flickr30k/flickr_test_valid.txt \
@@ -17,8 +17,6 @@ python evaluation.py \
     --num_workers 4 \
     --output_dir ./eval_results_flickr30k \
     --save_detailed \
-    --output_file_name table1-DiscriTune-COCO-Flickr30k-final.json
+    --output_file_name table1-DiscriTune-COCO-Flickr30k-kaparthy-5.json
 
-echo ""
-echo "Evaluation completed!"
-echo "Results saved to eval_results_flickr30k/"
+
