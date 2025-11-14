@@ -23,7 +23,7 @@ from discritune_train import (
     InBatchDistractorDataLoader
 )
 
-# beam search로 caption 생성
+# train에서는 greedy하게, eval에서는 beam search로 caption 생성
 def generate_captions(captioner, prefix, tokenizer, beam_size=5, max_length=40, device='cuda'):
     batch_size = prefix.shape[0]
     with torch.no_grad():
@@ -56,7 +56,6 @@ def generate_captions(captioner, prefix, tokenizer, beam_size=5, max_length=40, 
 
         generated_tokens = outputs[0]
 
-        # EOS 토큰 찾기
         eos_token_id = tokenizer.eos_token_id
         if eos_token_id in generated_tokens:
             eos_idx = (generated_tokens == eos_token_id).nonzero(as_tuple=True)[0][0]
@@ -77,7 +76,7 @@ def generate_captions(captioner, prefix, tokenizer, beam_size=5, max_length=40, 
 
     return all_captions
 
-# Evaluator class
+
 class Evaluator:
     def __init__(self, captioner, clip_model, tokenizer,device='cuda', beam_size=5):
         self.captioner = captioner
@@ -110,7 +109,7 @@ class Evaluator:
                     max_length=40,
                     device=self.device
                 )
-
+                #breakpoint()
                 # text feature
                 text_tokens = clip.tokenize(captions, truncate=True).to(self.device)
                 text_features = self.clip_model.encode_text(text_tokens).float()
@@ -165,7 +164,7 @@ def evaluation(args):
     checkpoint = torch.load(args.checkpoint, map_location=device, weights_only=False)
     print(f"Loading model from {args.checkpoint}...")
 
-    # checkpoint 로드
+    # checkpoint 로드하고 미리 만들어 둔 틀에다가 가중치를 업로드
     if 'model_state_dict' in checkpoint:
         captioner.load_state_dict(checkpoint['model_state_dict'], strict=False)
         print(f"Loaded checkpoint from epoch {checkpoint.get('epoch', 'unknown')}")

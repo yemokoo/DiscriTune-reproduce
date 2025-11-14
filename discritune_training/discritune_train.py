@@ -46,7 +46,6 @@ class ClipCaptionModel(nn.Module):
         ))
 
     def forward(self, tokens, prefix, mask=None, labels=None):
-        # 나중에 필요하면 구현
         pass
 
     def generate_with_log_probs(self, prefix, tokenizer, max_length=40, temperature=1.0, device='cuda'):
@@ -135,7 +134,7 @@ def compute_discriminative_reward_batch(captions, images, clip_model, device='cu
 
     return rewards
 
-# baseline for REINFORCE
+# baseline for REINFORCE -> like moving average filter 
 class RunningMeanBaseline:
     def __init__(self, momentum=0.9):
         self.momentum = momentum
@@ -153,7 +152,7 @@ class RunningMeanBaseline:
             # exponential moving average
             self.mean = self.mean * self.momentum + reward * (1-self.momentum)
 
-# Dataset - 이미지만 로드 (caption은 모델이 생성)
+# Dataset - caption 제외 이미지만 로드 (caption은 모델이 생성)
 class DiscriminativeDataset(Dataset):
     def __init__(self, image_dir, image_list_file, clip_preprocess, max_images=None):
         self.image_dir = Path(image_dir)
