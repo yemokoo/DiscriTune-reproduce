@@ -7,8 +7,14 @@ COCO-kaparthy_N.sjon -> 학습 데이터 셋 논문과 동일하게 kaparthy tar
 
 다른 벤치마크도 동일.
 
-## Results trained on COCO kaparthy split
+## My results 
 | Model | COCO | CC | Flickr30k | NoCaps-Near | NoCaps-Out | Concadia |
 |-------|------|-----|-----------|-------------|------------|----------|
-| ClipCap | 74.64 | 74.25 | 65.37 | 77.46 | 75.36 | 56.04 |
-| DiscriTune: epoch 5 | 81.76 | 79.19 | 74.50 | 82.19 | 79.64 | 61.37 |
+| ClipCap-COCO | 74.64 | 74.25 | 65.37 | 77.46 | 75.36 | 56.04 |
+| DiscriTune-COCO: epoch 5 | 81.76 | 79.19 | 74.50 | 82.19 | 79.64 | 61.37 |
+
+## Paper results
+| Model | COCO | ConCap | Flickr | nocaps near | nocaps out | Concadia |
+|-------|------|--------|--------|-------------|------------|----------|
+| ClipCap-COCO | 74.2 | 73.0 | 65.9 | 77.3 | 73.9 | 53.74 |
+| DiscriTune-COCO | 84.8 | 83.6 | 79.4 | 86.0 | 82.5 | 64.79 |
