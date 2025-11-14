@@ -1,0 +1,7 @@
+{
+  "accuracy": 0.61520831938833,
+  "total_images": 9691,
+  "checkpoint": "../outputs/discritune_coco_multigpu/discritune_coco_final.pt",
+  "dataset": "../data/concadia",
+  "batch_size": 100
+}

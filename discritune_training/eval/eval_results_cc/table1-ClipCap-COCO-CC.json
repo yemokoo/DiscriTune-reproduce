@@ -1,0 +1,7 @@
+{
+  "accuracy": 0.7424770456935288,
+  "total_images": 10912,
+  "checkpoint": "../checkpoints/coco_weights.pt",
+  "dataset": "../data/conceptual_captions",
+  "batch_size": 100
+}

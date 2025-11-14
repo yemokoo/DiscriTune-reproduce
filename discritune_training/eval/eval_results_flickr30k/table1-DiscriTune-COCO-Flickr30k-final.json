@@ -1,0 +1,7 @@
+{
+  "accuracy": 0.7162499874830246,
+  "total_images": 878,
+  "checkpoint": "../outputs/discritune_coco_multigpu/discritune_coco_final.pt",
+  "dataset": "../data/flickr30k",
+  "batch_size": 100
+}

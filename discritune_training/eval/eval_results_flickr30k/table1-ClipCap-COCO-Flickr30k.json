@@ -1,0 +1,7 @@
+{
+  "accuracy": 0.6537499874830246,
+  "total_images": 878,
+  "checkpoint": "/home/semlab/SEM/yemo/CLIP/DiscriTune-reproduce/discritune_training/checkpoints/coco_weights.pt",
+  "dataset": "../data/flickr30k",
+  "batch_size": 100
+}
