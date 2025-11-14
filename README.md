@@ -7,7 +7,7 @@ COCO-kaparthy_N.sjon -> 학습 데이터 셋 논문과 동일하게 kaparthy tar
 
 다른 벤치마크도 동일.
 
-##Results
+## Results
 | Model | COCO | CC | Flickr30k | NoCaps-Near | NoCaps-Out | Concadia |
 |-------|------|-----|-----------|-------------|------------|----------|
 | ClipCap | 74.64 | 74.25 | 65.37 | 77.46 | 75.36 | 56.04 |
