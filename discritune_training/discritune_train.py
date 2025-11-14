@@ -257,6 +257,8 @@ class DiscriTuneTrainer:
             # 이동평균 baseline
             baseline_value = self.baseline.get()
             advantages = rewards - baseline_value
+            advantages = (advantages - advantages.mean()) / (advantages.std() + 1e-8)
+            
 
             # policy gradient loss
             loss = -(advantages.detach() * log_probs).mean()
