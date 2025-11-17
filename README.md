@@ -7,11 +7,18 @@ COCO-kaparthy_N.sjon -> 학습 데이터 셋 논문과 동일하게 kaparthy tar
 
 다른 벤치마크도 동일.
 
+## NEWS
+Advantage 계산 과정에서 그대로 값을 사용하지 않고, 계산된 advantage 값에 Z 정규화를 적용하였더니
+원본 논문에서 제안된 결과보다 더 좋은 성능을 보이는 것을 확인함.
+
 ## My results 
 | Model | COCO | ConCap | Flickr30k | NoCaps-Near | NoCaps-Out | Concadia |
 |-------|------|-----|-----------|-------------|------------|----------|
 | ClipCap-COCO | 74.64 | 74.25 | 65.37 | 77.46 | 75.36 | 56.04 |
 | DiscriTune-COCO: epoch 5 | 81.76 | 79.19 | 74.50 | 82.19 | 79.64 | 61.37 |
+| DiscriTune-COCO: epoch 15 | 87.58 | 84.27 | 81.75 | 87.00 | 83.43 | 67.98 |
+
+
 
 ## Paper results
 | Model | COCO | ConCap | Flickr | nocaps near | nocaps out | Concadia |
