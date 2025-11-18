@@ -1,0 +1,7 @@
+{
+  "accuracy": 0.8599999845027924,
+  "total_images": 878,
+  "checkpoint": "../outputs/discritune_coco_kaparthy/discritune_coco_final.pt",
+  "dataset": "../data/flickr30k",
+  "batch_size": 100
+}
