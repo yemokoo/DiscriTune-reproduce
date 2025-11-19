@@ -273,41 +273,25 @@ class DiscriTuneTrainer:
             rewards_list.extend(rewards.detach().cpu().tolist())
             loss_list.append(loss.item())
 
-            with torch.no_grad():
-                text_tokens = clip.tokenize(captions, truncate=True).to(self.device)
-                text_features = self.clip_model.encode_text(text_tokens)
-                text_features = text_features / text_features.norm(dim=-1, keepdim=True)
-
-                image_features = self.clip_model.encode_image(images)
-                image_features = image_features / image_features.norm(dim=-1, keepdim=True)
-
-                similarity = text_features @ image_features.T
-                predictions = similarity.argmax(dim=1)
-                accuracy = (predictions == torch.arange(batch_size, device=self.device)).float().mean()
-                acc_list.append(accuracy.item())
 
             if batch_idx % 10 == 0:
                 pbar.set_postfix({
                     'reward': f'{rewards.mean().item():.4f}',
                     'baseline': f'{baseline_value:.4f}',
-                    'loss': f'{loss.item():.4f}',
-                    'acc': f'{accuracy.item():.3f}'
+                    'loss': f'{loss.item():.4f}'
                 })
 
         avg_reward = np.mean(rewards_list)
         avg_loss = np.mean(loss_list)
-        avg_accuracy = np.mean(acc_list)
 
         print(f"\nEpoch {epoch} Summary:")
         print(f"  Avg Reward: {avg_reward:.4f}")
         print(f"  Avg Loss: {avg_loss:.4f}")
-        print(f"  Avg Accuracy: {avg_accuracy:.3f}")
         print(f"  Baseline: {self.baseline.get():.4f}")
 
         return {
             'avg_reward': avg_reward,
             'avg_loss': avg_loss,
-            'avg_accuracy': avg_accuracy,
             'baseline': self.baseline.get()
         }
 
