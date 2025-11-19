@@ -12,9 +12,8 @@ COCO-kaparthy_N.sjon -> 학습 데이터 셋 논문과 동일하게 kaparthy tar
 | Model | COCO | ConCap | Flickr30k | NoCaps-Near | NoCaps-Out | Concadia |
 |-------|------|-----|-----------|-------------|------------|----------|
 | ClipCap-COCO | 74.64 | 74.25 | 65.37 | 77.46 | 75.36 | 56.04 |
-| DiscriTune-COCO: epoch 5 | 81.76 | 79.19 | 74.50 | 82.19 | 79.64 | 61.37 |
-| DiscriTune-COCO: epoch 15 | 87.58 | 84.27 | 81.75 | 87.00 | 83.43 | 67.98 |
-| DiscriTune-COCO final | 88.74 | 85.06 | 86.00 | 89.19 | 84.93 | 68.52 |
+| DiscriTune - COCO | 77.68 | 77.60 | 71.62 | 82.35 | 78.71 | 61.52 |
+| DiscriTune-COCO + 정규화 | 88.74 | 85.06 | 86.00 | 89.19 | 84.93 | 68.52 |
 
 
 ## Paper results
