@@ -51,20 +51,16 @@ class ClipCaptionModel(nn.Module):
     def generate_with_log_probs(self, prefix, tokenizer, max_length=40, temperature=1.0, device='cuda'):
         # caption 생성 + log probability 계산 (REINFORCE에 필요)
         batch_size = prefix.shape[0]
-
         # projection
         prefix_projections = self.clip_project(prefix).view(batch_size, self.prefix_length, self.gpt_embedding_size)
-
         all_generated_tokens = []
         all_log_probs = []
         all_captions = []
-
         stop_token_id = tokenizer.encode('.')[0]
 
         for i in range(batch_size):
             generated_tokens = []
             log_probs = []
-
             past_key_values = None
             inputs_embeds = prefix_projections[i:i+1]
 
@@ -76,27 +72,20 @@ class ClipCaptionModel(nn.Module):
                 )
                 logits = outputs.logits[:, -1, :] / temperature
                 past_key_values = outputs.past_key_values
-
                 # greedy decoding
                 probs = F.softmax(logits, dim=-1)
                 token_id = torch.argmax(probs, dim=-1)
-
                 log_prob = torch.log(probs[0, token_id] + 1e-10)
-
                 generated_tokens.append(token_id.item())
                 log_probs.append(log_prob)
-
                 if token_id.item() == stop_token_id or token_id.item() == tokenizer.eos_token_id:
                     break
-
                 inputs_embeds = self.gpt.transformer.wte(token_id.unsqueeze(0))
-
             caption = tokenizer.decode(generated_tokens, skip_special_tokens=True)
 
             all_generated_tokens.append(generated_tokens)
             all_log_probs.append(torch.stack(log_probs).sum())
             all_captions.append(caption)
-
         return all_captions, torch.stack(all_log_probs)
 
 
